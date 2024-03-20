@@ -1,0 +1,47 @@
+/* movies.css */
+
+.movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.movie-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.movie-info {
+  font-size: 14px;
+}
+
+.movie-poster {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.movies-container {
+  list-style: none;
+  padding: 0;
+}
+
+.movie-item {
+  margin-bottom: 10px;
+}
+
+.movie-link {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.movie-link:hover {
+  color: #0056b3;
+}
