@@ -7,48 +7,43 @@ const Cinema_URL = `${API_URL}/cinema`;
 
 interface Movie {
   id: number;
-  title: string;
-  year: string;
-  rated: string;
-  released: string;
-  runtime: string;
-  genre: string;
-  director: string;
-  writer: string;
-  actors: string;
-  plot: string;
-  language: string;
-  country: string;
-  awards: string;
-  poster: string;
-  metascore: string;
-  imdb_rating: string;
-  imdb_votes: string;
-  type: string;
-  dvd: string;
-  box_office: string;
-  production: string;
-  website: string;
-  response: string;
+  Title: string;
+  Tear: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+  Metascore: string;
+  ImdbRating: string;
+  ImdbVotes: string;
+  Type: string;
+  Dvd: string;
+  BoxOffice: string;
+  Production: string;
+  Website: string;
+  Response: string;
 }
 
 interface Hall {
   id: number;
   name: string;
   numberOfSeats: number;
-  numberOfRows: number;
-  numberOfColumns: number;
-  hasCowboySeats: boolean;
-  hasSofaSeats: boolean;
-  cowboySeatPrice: number;
-  regularSeatPrice: number;
-  sofaSeatPrice: number;
-  canBeSplit: boolean;
-  numberOfRegularSeats: number;
-  numberOfVIPSeats: number;
-  vipSeatPrice: number;
-  has3DTechnology: boolean;
-  hasIMAXTechnology: boolean;
+  number_of_rows: number;
+  number_of_columns: number;
+  has_cowboy_seats: boolean;
+  has_sofa_seats: boolean;
+  cowboy_seat_price: number;
+  regular_seat_price: number;
+  sofa_seat_price: number;
+  can_be_Split: boolean;
 }
 
 interface Cinema {
@@ -59,36 +54,38 @@ interface Cinema {
   number_Of_Halls: number;
 }
 
+let movies: Movie[] = [];
+
 export async function getMovies(): Promise<Movie[]> {
+  if (movies.length > 0) return [...movies];
+
   try {
-    const response = await fetch(Movies_URL);
-    if (!response.ok) {
-      throw new Error("Failed to fetch movies");
+    const res = await fetch(Movies_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
     }
-    const movies: Movie[] = await response.json();
+
+    const moviesData: Movie[] = await res.json();
+    console.log("Movies fetched successfully:", moviesData);
+    movies = moviesData;
     return movies;
   } catch (error) {
     console.error("Error fetching movies:", error);
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 }
 
-export async function getMovie(id: number | undefined): Promise<Movie | null> {
-  if (!id) {
-    console.error("Movie ID is undefined.");
-    return null;
-  }
-
+export async function getMovie(id: number): Promise<Movie> {
   try {
-    const response = await fetch(`${Movies_URL}/${id}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch movie");
+    const res = await fetch(`${Movies_URL}/${id}`);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
     }
-    const movie: Movie = await response.json();
-    return movie;
+    const movieData: Movie = await res.json();
+    return movieData;
   } catch (error) {
-    console.error("Error fetching movie by ID:", error);
-    return null;
+    console.error(`Error fetching movie with ID ${id}:`, error);
+    throw error;
   }
 }
 
@@ -104,11 +101,21 @@ async function deleteMovie(id: string): Promise<void> {
   return fetch(`${Movies_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-async function getHalls(): Promise<Hall[]> {
-  return fetch(Hall_URL).then(handleHttpErrors);
+export async function getHalls(): Promise<Hall[]> {
+  try {
+    const res = await fetch(Hall_URL);
+    if (!res.ok) {
+      throw new Error("Failed to fetch halls");
+    }
+    const hallsData: Hall[] = await res.json();
+    return hallsData;
+  } catch (error) {
+    console.error("Error fetching halls:", error);
+    throw error;
+  }
 }
 
-async function getHall(id: number): Promise<Hall> {
+export async function getHall(id: number): Promise<Hall> {
   return fetch(`${Hall_URL}/${id}`).then(handleHttpErrors);
 }
 
@@ -144,12 +151,16 @@ async function deleteCinema(id: number): Promise<void> {
   return fetch(`${Cinema_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-export async function getMovieByimdbID(id: string): Promise<Movie | null> {
+export async function getMovieById(id: number): Promise<Movie | null> {
   try {
-    const movies = await getMovies();
-    return movies.find((movie) => String(movie.id) === id) || null; // Convert movie.id to string for comparison
+    const response = await fetch(`${Movies_URL}/${id}`); // Use id parameter in the URL
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie");
+    }
+    const movie: Movie = await response.json();
+    return movie;
   } catch (error) {
-    console.error("Error fetching movie by id:", error);
+    console.error("Error fetching movie by ID:", error);
     return null;
   }
 }

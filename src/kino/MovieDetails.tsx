@@ -1,35 +1,37 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getMovies } from "../services/apiFacade";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getMovieById, Movie } from "../services/apiFacade";
 
-export const MovieDetails = () => {
-  const [movies, setMovies] = useState<Array<any>>([]);
+const MovieDetails: React.FC = () => {
+  const [movie, setMovie] = useState<Movie | null>(null);
+  const { id } = useParams<{ id: string }>(); // Assuming you're using React Router
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchMovie = async () => {
       try {
-        const moviesData = await getMovies();
-        setMovies(moviesData);
+        if (id) {
+          const movieData = await getMovieById(parseInt(id));
+          setMovie(movieData);
+        }
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching movie:", error);
       }
     };
 
-    fetchMovies();
-  }, []);
+    fetchMovie();
+  }, [id]);
+
+  if (!movie) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      <h2>Movies</h2>
-      <p>Explore our list of movies.</p>
-
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div>
+      <h2>{movie.Title}</h2>
+      <p>{movie.Plot}</p>
+      {/* Render other movie details as needed */}
+    </div>
   );
 };
+
+export default MovieDetails;
