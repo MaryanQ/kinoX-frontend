@@ -11,6 +11,8 @@ import Navbar from "./Layout/Navbar";
 import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 
+import { ShowTime } from "./kino/ShowTime";
+
 function App() {
   const auth = useAuth();
 
@@ -23,6 +25,7 @@ function App() {
         <Route path="buyTickets" element={<BuyTickets />} />
         <Route path="/cinemas" element={<Cinemas />} />
         <Route path="/halls" element={<Halls />} />
+        <Route path="/showtimes" element={<ShowTime />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login />} />

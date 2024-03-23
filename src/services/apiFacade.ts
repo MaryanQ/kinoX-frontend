@@ -4,6 +4,7 @@ import { makeOptions, handleHttpErrors } from "./fetchUtilis";
 const Movies_URL = API_URL + "/movies";
 const Hall_URL = `${API_URL}/hall`;
 const Cinema_URL = `${API_URL}/cinema`;
+const Showtimes_URL = `${API_URL}/showtimes`;
 
 interface Movie {
   id: number;
@@ -52,6 +53,17 @@ interface Cinema {
   address: string;
   contact_Information: string;
   number_Of_Halls: number;
+}
+
+interface Showtime {
+  id: number;
+  hallId: number;
+  startTime: string;
+  endTime: string;
+  day: string;
+  movieId: number;
+  availableSeats: number[];
+  bookedSeats: number[];
 }
 
 let movies: Movie[] = [];
@@ -165,6 +177,56 @@ export async function getMovieById(id: number): Promise<Movie | null> {
   }
 }
 
+export async function getShowtimes(): Promise<Showtime[]> {
+  try {
+    const res = await fetch(Showtimes_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const showtimesData: Showtime[] = await res.json();
+    console.log("Showtimes fetched successfully:", showtimesData);
+    return showtimesData;
+  } catch (error) {
+    console.error("Error fetching showtimes:", error);
+    throw error;
+  }
+}
+
+export async function addShowtime(newShowtime: Showtime): Promise<void> {
+  try {
+    const res = await fetch(Showtimes_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newShowtime),
+    });
+    if (!res.ok) {
+      throw new Error("Add showtime request failed");
+    }
+    console.log("Showtime added successfully");
+  } catch (error) {
+    console.error("Error adding showtime:", error);
+    throw error;
+  }
+}
+
+export async function deleteShowtime(id: number): Promise<void> {
+  try {
+    const res = await fetch(`${Showtimes_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error("Delete showtime request failed");
+    }
+    console.log("Showtime deleted successfully");
+  } catch (error) {
+    console.error(`Error deleting showtime with ID ${id}:`, error);
+    throw error;
+  }
+}
+
 export default {
   getMovies,
   getMovie,
@@ -178,5 +240,8 @@ export default {
   getCinema,
   addCinema,
   deleteCinema,
+  getShowtimes,
+  addShowtime,
+  deleteShowtime,
 };
-export type { Movie, Hall, Cinema };
+export type { Movie, Hall, Cinema, Showtime };
