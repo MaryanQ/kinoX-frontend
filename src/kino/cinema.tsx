@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+/*import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCinemas } from "../services/apiFacade";
 
 export const Cinemas = () => {
-  const [cinemas, setCinemas] = useState<Array<any>>();
+ // const [cinemas, setCinemas] = useState<Array<any>>();
 
   useEffect(() => {
     const fetchCinemas = async () => {
@@ -33,3 +33,4 @@ export const Cinemas = () => {
     </>
   );
 };
+*/
