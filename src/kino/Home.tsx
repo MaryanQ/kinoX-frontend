@@ -2,8 +2,7 @@ import React from "react";
 import Navbar from "../layout/NavbarHomePage"; // Import the Navbar component
 import Footer from "../layout/Footer"; // Import the Footer component
 import { Link } from "react-router-dom";
-import Navbar from "../layout/NavbarHomePage";
-import Footer from "../layout/Footer";
+
 import { IconContext } from "react-icons";
 import { Swiper, SwiperSlide } from "swiper/react"; // Modified import for Swiper
 import "../styles/styles.css";
