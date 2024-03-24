@@ -14,10 +14,12 @@ const Footer: React.FC = () => {
         <div className="footer-omos" id="footer-sprite">
           <h4>Om os</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-            dolorem aspernatur distinctio sint quo officia culpa necessitatibus!
-            Dolorem quas eveniet, rerum quos iste, aliquam illo temporibus nam
-            hic deserunt est.
+            Welcome to ANM Cinemaxx, where the magic of movies comes to life!
+            Situated in the heart of Copenhagen/Aarhus, ANM Cinemaxx offers an
+            unparalleled cinematic experience for movie enthusiasts of all ages.
+            With state-of-the-art facilities, comfortable seating, and a wide
+            selection of the latest blockbusters, indie gems, and timeless
+            classics, we're your ultimate destination for entertainment.
           </p>
           <div className="footer-socials">
             <li>

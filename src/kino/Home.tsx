@@ -38,7 +38,7 @@ const Home: React.FC = () => {
               navigation
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSwiper={(swiper) => console.log(swiper)}
+              onSwiper={(swiper: typeof Swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
               autoplay={{ delay: 10000 }} // Autoplay with a delay of 3000ms (3 seconds)
             >

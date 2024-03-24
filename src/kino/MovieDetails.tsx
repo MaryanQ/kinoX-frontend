@@ -4,13 +4,14 @@ import { getMovieById, Movie } from "../services/apiFacade";
 
 const MovieDetails: React.FC = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
-  const { id } = useParams<{ id: string }>(); // Assuming you're using React Router
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
         if (id) {
           const movieData = await getMovieById(parseInt(id));
+          console.log("Movie data:", movieData);
           setMovie(movieData);
         }
       } catch (error) {
@@ -25,10 +26,13 @@ const MovieDetails: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  console.log("Movie props:", movie); // Add this line to check props
+  console.log("Poster URL:", movie?.poster_url); // Add this line to check poster URL
+
   return (
     <div>
-      <h2>{movie.Title}</h2>
-      <p>{movie.Plot}</p>
+      <h2>{movie.title}</h2>
+      <p>{movie.plot}</p>
       {/* Render other movie details as needed */}
     </div>
   );

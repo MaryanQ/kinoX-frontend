@@ -4,9 +4,12 @@ import "./movies.css";
 
 interface Movie {
   id: number;
-  Title: string;
-  Poster: string;
-  Rated: string;
+  title: string;
+  year: string;
+  genre: string;
+  director: string;
+  plot: string;
+  poster_url: string;
 }
 
 interface MovieCardProps {
@@ -14,18 +17,18 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  item: { id, Title, Poster, Rated },
+  item: { id, title, poster_url, plot },
 }) => {
   return (
     <>
       <div className="movie-card">
         <div className="MovieBox">
           <div className="img">
-            <img src={Poster} alt="" />
+            <img src={poster_url} alt="" />
           </div>
           <div className="text">
-            <h3>{Title}</h3>
-            <span>{Rated}</span> <br />
+            <h3>{title}</h3>
+            <span>{plot}</span> <br />
             <Link to={`/movies/${id}`}>
               {" "}
               {/* Assuming the route is correct */}
