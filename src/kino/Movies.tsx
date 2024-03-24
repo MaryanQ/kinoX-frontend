@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getMovies, Movie } from "../services/apiFacade";
-
+import "./movies.css";
 import MovieCard from "./movieCard";
 
 export const Movies = () => {
