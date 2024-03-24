@@ -26,6 +26,8 @@ const MovieCard: React.FC<MovieCardProps> = ({
           <div className="img">
             <img src={poster_url} alt="" />
           </div>
+        </div>
+        <div className="info">
           <div className="text">
             <h3>{title}</h3>
             <span>{plot}</span> <br />
@@ -36,6 +38,11 @@ const MovieCard: React.FC<MovieCardProps> = ({
                 <i className="fa fa-ticket"></i> BOOK NU
               </button>
             </Link>
+          </div>
+          <div className="details">
+            <p>Title: {title}</p>
+            <p>poster: {poster_url} </p>
+            <p>Plot:{plot} </p>
           </div>
         </div>
       </div>

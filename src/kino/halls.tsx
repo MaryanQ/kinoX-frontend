@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getHalls } from "../services/apiFacade";
 import { Hall } from "../services/apiFacade"; // Import Hall interface
+import BigHall from "../layout/BigHall";
+import BuyTickets from "./buyTicket";
+import NavbarAll from "../layout/NavbarAll";
 
 export const Halls = () => {
   const [halls, setHalls] = useState<Hall[]>([]);
@@ -21,9 +24,9 @@ export const Halls = () => {
 
   return (
     <>
-      <h2>Halls</h2>
-      <p>Explore our list of halls.</p>
-
+      <NavbarAll />
+      <BuyTickets />
+      <BigHall />
       <ul>
         {halls.map((hall) => (
           <li key={hall.id}>

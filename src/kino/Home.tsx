@@ -1,4 +1,6 @@
 import React from "react";
+import Navbar from "../layout/NavbarHomePage"; // Import the Navbar component
+import Footer from "../layout/Footer"; // Import the Footer component
 import { Link } from "react-router-dom";
 import Navbar from "../layout/NavbarHomePage";
 import Footer from "../layout/Footer";
@@ -20,6 +22,7 @@ import movie1 from "../images/movie1.jpeg";
 import movie2 from "../images/movie2.jpeg";
 import movie3 from "../images/movie3.jpeg";
 import { Movies } from "./Movies";
+import MySwiper from "../layout/Swiper";
 
 const Home: React.FC = () => {
   return (
@@ -29,6 +32,7 @@ const Home: React.FC = () => {
           <IconContext.Provider value={{ color: "#fff" }}>
             <Navbar />
           </IconContext.Provider>
+          <MySwiper />
           <div className="swiper-container">
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
@@ -91,6 +95,9 @@ const Home: React.FC = () => {
           </div>
         </header>
 
+        <div>
+          <h1 className="title-explorer">Explorer out movies</h1>
+        </div>
         <section className="about-us">
           <Movies />
         </section>
