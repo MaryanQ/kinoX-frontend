@@ -30,7 +30,11 @@ const BookingForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         id: 0, // Set a default value for id or leave it empty
       };
 
-      await submitBookingData(formattedData);
+      await submitBookingData({
+        ...formattedData,
+        seatId: parseInt(formattedData.seatId),
+      });
+
       // Handle successful submission (e.g., display success message, redirect user)
     } catch (error) {
       // Handle errors, e.g., display error message to the user

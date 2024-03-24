@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getHalls } from "../services/apiFacade";
-import { Hall } from "../services/apiFacade"; // Import Hall interface
+import { Hall } from "../services/apiFacade";
 import BigHall from "../layout/BigHall";
-import BuyTickets from "./buyTicket";
+
 import NavbarAll from "../layout/NavbarAll";
 
 export const Halls = () => {
@@ -22,17 +22,22 @@ export const Halls = () => {
     fetchHalls();
   }, []);
 
+  // Function to calculate total price based on selected seats
+
+  useEffect(() => {}, [halls]);
+
   return (
     <>
       <NavbarAll />
-      <BuyTickets />
+
+      {/* Pass totalPrice as prop */}
       <BigHall />
       <ul>
         {halls.map((hall) => (
           <li key={hall.id}>
-            <Link
-              to={`/hall/${hall.id}`}
-            >{`${hall.name} - Number of Seats: ${hall.numberOfSeats}`}</Link>
+            <Link to={`/hall/${hall.id}`}>
+              {`${hall.name} - Number of Seats: ${hall.capacity}`}
+            </Link>
           </li>
         ))}
       </ul>

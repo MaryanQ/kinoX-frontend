@@ -17,7 +17,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  item: { id, title, poster_url, plot },
+  item: { title, poster_url, plot },
 }) => {
   return (
     <>
@@ -31,7 +31,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
           <div className="text">
             <h3>{title}</h3>
             <span>{plot}</span> <br />
-            <Link to={`/movies/${id}`}>
+            <Link to="/halls">
               {" "}
               {/* Assuming the route is correct */}
               <button className="primary-btn">

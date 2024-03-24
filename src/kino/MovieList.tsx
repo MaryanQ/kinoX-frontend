@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useHistory from react-router-dom
-import { getMovies, Movie } from "../services/apiFacade";
+import { Link } from "react-router-dom";
 
-const MovieList: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const navigate = useNavigate();
+interface Movie {
+  id: number;
+  title: string;
+  startTime: Date;
+}
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+const MovieList = () => {
+  // Sample movie data
+  const movies: Movie[] = [
+    { id: 1, title: "Movie 1", startTime: new Date("2024-03-25T18:00:00") },
+    { id: 2, title: "Movie 2", startTime: new Date("2024-03-25T20:00:00") },
+  ];
 
-  const fetchMovies = async () => {
-    try {
-      const moviesData = await getMovies();
-      setMovies(moviesData);
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
-  };
-  const handleBookingClick = (movieId: number) => {
-    console.log("Initiating booking process for movie with ID:", movieId);
-    // Navigate to the booking form page with the movie ID in the URL
-    navigate(`/booking/${movieId}`);
+  // Function to handle movie click
+  const handleMovieClick = () => {
+    console.log("Movie clicked!"); // Add a console.log statement
+    // Navigate to the page where seats can be selected
+    // Example URL: /select-seats/:movieId
   };
 
   return (
@@ -30,12 +26,9 @@ const MovieList: React.FC = () => {
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <h3>{movie.title}</h3>
-            <p>{movie.plot}</p>
-            <Link to={`/movies/${movie.id}`}>Details</Link>
-            <button onClick={() => handleBookingClick(movie.id)}>
-              Book Now
-            </button>
+            <Link to={`/select-seats/${movie.id}`} onClick={handleMovieClick}>
+              {movie.title}
+            </Link>
           </li>
         ))}
       </ul>

@@ -2,10 +2,11 @@ import { API_URL } from "../settings";
 import { makeOptions, handleHttpErrors } from "./fetchUtilis";
 
 const Movies_URL = API_URL + "/movies";
-const Hall_URL = `${API_URL}/hall`;
+const Hall_URL = `${API_URL}/halls`;
 const Cinema_URL = `${API_URL}/cinema`;
-const Showtimes_URL = `${API_URL}/showtimes`;
+const MovieScreening_URL = `${API_URL}/movie_screenings`;
 const Bookings_URL = `${API_URL}/bookings`;
+const Seats_URL = `${API_URL}/seats`;
 
 interface Movie {
   id: number;
@@ -15,26 +16,19 @@ interface Movie {
   director: string;
   plot: string;
   poster_url: string;
+  hall: Hall[];
 }
 
 interface Hall {
   id: number;
   name: string;
-  numberOfSeats: number;
-  number_of_rows: number;
-  number_of_columns: number;
-  has_cowboy_seats: boolean;
-  has_sofa_seats: boolean;
-  cowboy_seat_price: number;
-  regular_seat_price: number;
-  sofa_seat_price: number;
-  can_be_Split: boolean;
+  capacity: number;
 }
 
 interface Booking {
   id: number;
   customerName: string;
-  seatId: string;
+  seatId: number;
   movieId: number;
   price: number;
   bookingTime: string;
@@ -48,15 +42,24 @@ interface Cinema {
   number_Of_Halls: number;
 }
 
-interface Showtime {
+interface MovieScreening {
   id: number;
-  hallId: number;
-  startTime: string;
-  endTime: string;
-  day: string;
-  movieId: number;
-  availableSeats: number[];
-  bookedSeats: number[];
+  movieTitle: string;
+  startTime: Date;
+  endTime: Date;
+  ticketPrice: number;
+  availableSeats: number;
+  bookedSeats: number;
+  language: string;
+  seats: Seat[];
+}
+
+interface Seat {
+  id: number;
+  type: string;
+  capacity: number;
+  price: number;
+  movieScreening: MovieScreening;
 }
 
 let movies: Movie[] = [];
@@ -107,6 +110,72 @@ async function deleteMovie(id: string): Promise<void> {
   return fetch(`${Movies_URL}/${id}`, options).then(handleHttpErrors);
 }
 
+//seat
+export async function getMovieScreening(id: number): Promise<MovieScreening> {
+  try {
+    const response = await fetch(`${MovieScreening_URL}/${id}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch movie screening with ID ${id}`);
+    }
+    const data: MovieScreening = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching movie screening with ID ${id}:`, error);
+    throw error;
+  }
+}
+export async function getMovieScreenings(): Promise<MovieScreening[]> {
+  try {
+    const response = await fetch(MovieScreening_URL);
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie screenings");
+    }
+    const data: MovieScreening[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching movie screenings:", error);
+    throw error;
+  }
+}
+
+export async function addMovieScreening(
+  newMovieScreening: MovieScreening
+): Promise<MovieScreening> {
+  try {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newMovieScreening),
+    };
+    const response = await fetch(MovieScreening_URL, options);
+    if (!response.ok) {
+      throw new Error("Failed to add movie screening");
+    }
+    const data: MovieScreening = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding movie screening:", error);
+    throw error;
+  }
+}
+
+export async function deleteMovieScreening(id: number): Promise<void> {
+  try {
+    const options = {
+      method: "DELETE",
+    };
+    const response = await fetch(`${MovieScreening_URL}/${id}`, options);
+    if (!response.ok) {
+      throw new Error("Failed to delete movie screening");
+    }
+  } catch (error) {
+    console.error(`Error deleting movie screening with ID ${id}:`, error);
+    throw error;
+  }
+}
+
 //bookings
 export async function getBookings(): Promise<Booking[]> {
   try {
@@ -146,6 +215,48 @@ export async function addBooking(newBooking: Booking): Promise<Booking> {
 export async function deleteBooking(id: number): Promise<void> {
   const options = makeOptions("DELETE", null);
   return fetch(`${Bookings_URL}/${id}`, options).then(handleHttpErrors);
+}
+
+//seat
+export async function getSeats(): Promise<Seat[]> {
+  try {
+    const res = await fetch(Seats_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+    const seatsData: Seat[] = await res.json();
+    console.log("Seats fetched successfully:", seatsData);
+    return seatsData;
+  } catch (error) {
+    console.error("Error fetching seats:", error);
+    throw error;
+  }
+}
+
+export async function getSeat(id: number): Promise<Seat> {
+  try {
+    const res = await fetch(`${Seats_URL}/${id}`);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+    const seatData: Seat = await res.json();
+    return seatData;
+  } catch (error) {
+    console.error(`Error fetching seat with ID ${id}:`, error);
+    throw error;
+  }
+}
+
+async function addSeat(newSeat: Seat): Promise<Seat> {
+  const method = newSeat.id ? "PUT" : "POST";
+  const options = makeOptions(method, newSeat);
+  const URL = newSeat.id ? `${Seats_URL}/${newSeat.id}` : Seats_URL;
+  return fetch(URL, options).then(handleHttpErrors);
+}
+
+async function deleteSeat(id: number): Promise<void> {
+  const options = makeOptions("DELETE", null);
+  return fetch(`${Seats_URL}/${id}`, options).then(handleHttpErrors);
 }
 
 //halls
@@ -213,56 +324,6 @@ export async function getMovieById(id: number): Promise<Movie | null> {
   }
 }
 
-export async function getShowtimes(): Promise<Showtime[]> {
-  try {
-    const res = await fetch(Showtimes_URL);
-    if (!res.ok) {
-      throw new Error("Fetch request failed");
-    }
-
-    const showtimesData: Showtime[] = await res.json();
-    console.log("Showtimes fetched successfully:", showtimesData);
-    return showtimesData;
-  } catch (error) {
-    console.error("Error fetching showtimes:", error);
-    throw error;
-  }
-}
-
-export async function addShowtime(newShowtime: Showtime): Promise<void> {
-  try {
-    const res = await fetch(Showtimes_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newShowtime),
-    });
-    if (!res.ok) {
-      throw new Error("Add showtime request failed");
-    }
-    console.log("Showtime added successfully");
-  } catch (error) {
-    console.error("Error adding showtime:", error);
-    throw error;
-  }
-}
-
-export async function deleteShowtime(id: number): Promise<void> {
-  try {
-    const res = await fetch(`${Showtimes_URL}/${id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      throw new Error("Delete showtime request failed");
-    }
-    console.log("Showtime deleted successfully");
-  } catch (error) {
-    console.error(`Error deleting showtime with ID ${id}:`, error);
-    throw error;
-  }
-}
-
 export default {
   getMovies,
   getMovie,
@@ -272,6 +333,14 @@ export default {
   getBookings,
   addBooking,
   deleteBooking,
+  getMovieScreening,
+  getMovieScreenings,
+  addMovieScreening,
+  deleteMovieScreening,
+  getSeat,
+  getSeats,
+  addSeat,
+  deleteSeat,
   getHalls,
   getHall,
   addHall,
@@ -280,8 +349,5 @@ export default {
   getCinema,
   addCinema,
   deleteCinema,
-  getShowtimes,
-  addShowtime,
-  deleteShowtime,
 };
-export type { Movie, Booking, Hall, Cinema, Showtime };
+export type { Movie, Booking, Hall, Cinema, Seat, MovieScreening };

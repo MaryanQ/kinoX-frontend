@@ -10,7 +10,7 @@ import { Halls } from "./kino/halls";
 import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
-import { ShowTime } from "./kino/ShowTime";
+
 import BookingForm from "./Form/BookingForm";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         />
 
         <Route path="/halls" element={<Halls />} />
-        <Route path="/showtimes" element={<ShowTime />} />
+
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login />} />
