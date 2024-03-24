@@ -1,11 +1,5 @@
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
-:root {
-  --yellow: rgb(35, 109, 89);
-  --green: rgb(35, 109, 89);
-  --light-green: rgb(4, 167, 137);
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -83,7 +77,7 @@ section h1 {
 }
 
 nav {
-  height: 18vh;
+  height: 23vh;
   display: flex;
   padding: 5px 6%;
   justify-content: space-between;
@@ -100,7 +94,7 @@ nav img {
 
 .nav-links {
   flex: 1;
-  text-align: right;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
@@ -140,23 +134,10 @@ nav img {
   color: #ffffff;
   position: absolute;
   left: 50%;
-  bottom: -7%;
+  bottom: 0;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 999;
-}
-
-.text-box h1:lang(ar) {
-  color: #fff;
-  font-size: 60px;
-  direction: rtl;
-  transition: 0.5s;
-  font-family: "Droid Arabic Kufi", serif;
-}
-
-.text-box img {
-  filter: invert(100%);
-  width: 60%;
 }
 
 .text-box p {
@@ -174,19 +155,12 @@ nav img {
   background: none;
   padding: 12px 34px;
   font-size: 16px;
-  background: transparent;
+  background: rgb(62, 127, 107);
   position: relative;
   cursor: pointer;
   z-index: 0;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.logo {
-  font-family: "YourFancyFont", sans-serif;
-  font-size: 40px;
-  color: rgb(62, 127, 107);
-  text-decoration: none;
 }
 
 .btn::before {
@@ -198,12 +172,8 @@ nav img {
   width: 100%;
   clip-path: circle(0% at 0% 0%);
   transition: 0.5s;
-  background: var(--green);
+  background: rgb(42, 102, 76);
   z-index: -1;
-}
-
-.btn.trailer {
-  background-color: rgb(21, 40, 34);
 }
 
 .btn:hover::before {
@@ -212,6 +182,39 @@ nav img {
 
 .btn:hover {
   color: #000000;
+}
+
+select {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+select:hover {
+  transition: 0.5s;
+  background-color: rgb(21, 40, 34);
+  cursor: pointer;
+}
+
+.group-label {
+  font-weight: bold;
+  font-style: italic;
+  padding: 5px;
+  /* Prevent hover effect */
+  pointer-events: none;
+}
+
+.logo {
+  font-family: "YourFancyFont", sans-serif;
+  font-size: 40px;
+  color: rgb(62, 127, 107);
+  text-decoration: none;
 }
 
 nav svg {
@@ -256,7 +259,7 @@ nav svg {
 
   .nav-links.active {
     position: absolute;
-    background: var(--green);
+    background: rgb(35, 77, 60);
     height: 100vh;
     width: 500px;
     top: 0;
@@ -299,8 +302,11 @@ nav svg {
 
 /*---------------------about us---------------*/
 
-.about-us h1::after {
-  width: 40%;
+.title-explorer {
+  margin-top: 5%;
+  font-size: 40px;
+  text-align: center;
+  color: rgb(62, 127, 107);
 }
 
 .about-us {
@@ -593,6 +599,10 @@ hr {
   box-shadow: 0px 0px 0.75em rgba(0, 0, 0, 0.9);
 }
 
+.info {
+  flex: 2;
+}
+
 .MovieBox::after {
   content: "";
   position: absolute;
@@ -624,17 +634,6 @@ hr {
   margin-bottom: 15px;
 }
 
-.MovieBox button {
-  margin-top: 15px;
-  padding: 12px 20px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.MovieBox button i {
-  margin-right: 10px;
-}
-
 /*
 /*---------------MovieBox-------------
 @media only screen and (max-width: 768px) {
@@ -643,3 +642,173 @@ hr {
     height: 250px;
   }
 }*/
+
+.movie-container {
+  margin: 20px 0;
+}
+.movie-container select {
+  background-color: white;
+  border: 0;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  appearance: none;
+}
+.theater-container {
+  perspective: 1000px;
+  margin-bottom: 50px;
+  width: 600px;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.seat {
+  background-color: #444451;
+  height: 20px;
+  width: 25px;
+  margin: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.seat:nth-of-type(2) {
+  margin-right: 20px;
+}
+.seat:nth-last-of-type(2) {
+  margin-left: 20px;
+}
+
+.seat:not(.occupied):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  position: relative;
+  /* margin-left: -5%; */
+}
+
+h1 {
+  margin: 0;
+  position: relative;
+  /* left: -12%; */
+  font-size: 1.5em;
+}
+
+.theater {
+  position: relative;
+  margin-left: 10px;
+}
+
+.screen {
+  height: 70px;
+  width: 500px;
+  margin: 20px 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  transform: rotateX(-45deg);
+  -webkit-transform: rotateX(-45deg);
+  -moz-transform: rotateX(-45deg);
+  -ms-transform: rotateX(-45deg);
+  -o-transform: rotateX(-45deg);
+}
+.screen-direction {
+  display: flex;
+  justify-content: center;
+  margin: -15px 0 15px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-top: auto;
+}
+
+.cowboy-color {
+  background-color: rgb(23, 117, 104);
+}
+
+.sofa-color {
+  background-color: rgb(149, 212, 203);
+}
+
+.available-color {
+  background-color: #444451;
+}
+
+.yourSeat-color {
+  background-color: #ff0000;
+}
+
+p.text {
+  margin: 5px 0;
+  font-size: 24px;
+}
+p.text span {
+  color: #6feaf6;
+}
+
+.info {
+  margin-top: 20%;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in the width calculation */
+  padding: 5px 50px;
+  margin-bottom: 10%;
+}
+
+.info h1 {
+  color: rgb(106, 176, 151);
+  text-align: left;
+}
+
+.info p {
+  margin-top: 2%;
+  font-size: 15px;
+  color: #999;
+  text-align: left;
+}
+
+/* BuyTickets.css */
+
+/* Style for the container div */
+.buy-tickets-container {
+  margin-top: 40px;
+  left: 60%;
+  top: 100px;
+  position: absolute;
+  color: #fff;
+}
+/* Style for the basket or total amount box */
+.basket-box {
+  margin-top: 10%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+/* Style for the heading within the basket box */
+.basket-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Style for the amount paragraph within the basket box */
+.amount-paragraph {
+  font-size: 16px;
+  margin: 0;
+}

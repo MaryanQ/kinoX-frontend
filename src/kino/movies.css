@@ -13,6 +13,7 @@
   padding: 10px;
   width: 90vw;
   height: 320px;
+  display: flex;
 }
 
 .movie-title {

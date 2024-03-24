@@ -58,12 +58,6 @@ const Footer: React.FC = () => {
               <Link to="/">PROGRAMS</Link>
             </li>
             <li>
-              <Link to="/programs/about-us">KOMMENDE FILM</Link>
-            </li>
-            <li>
-              <Link to="/programs/teachers">OM OS</Link>
-            </li>
-            <li>
               <Link to="/programs/contactUs">KONTAKT OS</Link>
             </li>
             <li>

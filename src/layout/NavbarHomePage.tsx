@@ -4,6 +4,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { IconContext } from "react-icons";
 import "../styles/styles.css";
+import Theaters from "./theaters";
 
 const Navbar: React.FC = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -43,18 +44,14 @@ const Navbar: React.FC = () => {
           className={sidebar ? "nav-links active" : "nav-links"}
           id="navLinks"
         >
+          <Theaters />
+
           <ul onClick={showSidebar}>
             <Link to="#" className="menu-bars close-menu">
               <AiIcons.AiOutlineClose />
             </Link>
             <li>
               <Link to="/">PROGRAMS</Link>
-            </li>
-            <li>
-              <Link to="/programs/about-us">KOMMENDE FILM</Link>
-            </li>
-            <li>
-              <Link to="/programs/teachers">OM OS</Link>
             </li>
             <li>
               <Link to="/programs/contactUs">KONTAKT OS</Link>

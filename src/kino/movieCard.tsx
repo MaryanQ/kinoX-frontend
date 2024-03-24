@@ -7,6 +7,9 @@ interface Movie {
   Title: string;
   Poster: string;
   Rated: string;
+  Director: string;
+  Genre: string;
+  Runtime: string;
 }
 
 interface MovieCardProps {
@@ -14,7 +17,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  item: { id, Title, Poster, Rated },
+  item: { /*id*/ Title, Poster, Rated, Director, Genre, Runtime },
 }) => {
   return (
     <>
@@ -23,16 +26,21 @@ const MovieCard: React.FC<MovieCardProps> = ({
           <div className="img">
             <img src={Poster} alt="" />
           </div>
+        </div>
+        <div className="info">
           <div className="text">
-            <h3>{Title}</h3>
-            <span>{Rated}</span> <br />
-            <Link to={`/movies/${id}`}>
-              {" "}
-              {/* Assuming the route is correct */}
-              <button className="primary-btn">
+            <h1>{Title}</h1>
+            <Link to={/*`/movies/${id}`*/ `/halls`}>
+              <button className="btn">
                 <i className="fa fa-ticket"></i> BOOK NU
               </button>
             </Link>
+          </div>
+          <div className="details">
+            <p>Director: {Director}</p>
+            <p>Rated: {Rated} </p>
+            <p>Genre:{Genre} </p>
+            <p>Runtime:{Runtime} </p>
           </div>
         </div>
       </div>
