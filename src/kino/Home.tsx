@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../layout/NavbarHomePage"; // Import the Navbar component
-import Footer from "../layout/Footer"; // Import the Footer component
+import Navbar from "../layout/NavbarHomePage";
+import Footer from "../layout/Footer";
 import { IconContext } from "react-icons";
+import { Swiper, SwiperSlide } from "swiper/react"; // Modified import for Swiper
 import "../styles/styles.css";
 import {
   Autoplay,
@@ -11,7 +12,6 @@ import {
   Scrollbar,
   A11y,
 } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -31,16 +31,15 @@ const Home: React.FC = () => {
           </IconContext.Provider>
           <div className="swiper-container">
             <Swiper
-              // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               spaceBetween={50}
               slidesPerView={1}
               navigation
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSwiper={(swiper: typeof Swiper) => console.log(swiper)}
+              onSwiper={(swiper: any) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
-              autoplay={{ delay: 10000 }} // Autoplay with a delay of 3000ms (3 seconds)
+              autoplay={{ delay: 10000 }}
             >
               <SwiperSlide>
                 <img
