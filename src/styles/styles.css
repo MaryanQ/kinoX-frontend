@@ -812,3 +812,47 @@ p.text span {
   font-size: 16px;
   margin: 0;
 }
+
+.button-sec {
+  display: grid;
+  justify-content: left;
+  margin: 10%;
+  margin-top: 300px;
+  margin-bottom: 10%;
+  gap: 50px;
+}
+
+.Cinemas-btn,
+.Halls-btn {
+  text-align: center;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none; /* Remove underline */
+}
+
+.Cinemas-btn:hover,
+.Halls-btn:hover {
+  background-color: #0056b3;
+}
+
+.navbarAdmin {
+  margin: 0;
+  position: absolute;
+}
+
+.Cinema-crud {
+  margin-top: 300px;
+  color: #fff;
+}
+
+.Halls-crud {
+  margin-top: 300px;
+  color: #fff;
+}
