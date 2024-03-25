@@ -9,7 +9,7 @@ import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
 import RequireAuth from "./security/RequireAuth";
-import MovieForm from "./Form/MovieForm";
+import HomeAdmin from "./administrator/HomeAdmin";
 
 function App() {
   const auth = useAuth();
@@ -26,7 +26,7 @@ function App() {
           path="/add"
           element={
             <RequireAuth>
-              <MovieForm />
+              <HomeAdmin />
             </RequireAuth>
           }
         />
