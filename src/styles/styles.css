@@ -662,7 +662,6 @@ hr {
 .theater-container {
   perspective: 1000px;
   margin-bottom: 50px;
-  width: 600px;
   justify-content: center;
   text-align: center;
   overflow: hidden;
@@ -731,11 +730,14 @@ h1 {
   margin: -15px 0 15px;
 }
 
+.row-text {
+  margin-top: 200px;
+}
+
 .color-box {
   width: 20px;
   height: 20px;
   display: inline-block;
-  margin-top: auto;
 }
 
 .cowboy-color {
@@ -763,7 +765,7 @@ p.text span {
 }
 
 .info {
-  margin-top: 20%;
+  color: #fff;
   width: 100%;
   box-sizing: border-box; /* Include padding in the width calculation */
   padding: 5px 50px;
@@ -855,4 +857,48 @@ p.text span {
 .Halls-crud {
   margin-top: 300px;
   color: #fff;
+}
+
+#cinemaForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #0056b3;
 }

@@ -3,6 +3,7 @@ import NavbarAdmin from "../layout/NavbarAdmin"; // Import the Navbar component
 import Footer from "../layout/Footer"; // Import the Footer component
 import { IconContext } from "react-icons";
 import "../styles/styles.css";
+import CinemaForm from "../Form/CinemaForm";
 
 const CinemaAdmin: React.FC = () => {
   return (
@@ -13,8 +14,7 @@ const CinemaAdmin: React.FC = () => {
             <NavbarAdmin />
           </IconContext.Provider>
           <section className="Cinema-crud">
-            <h2>Cinema crud</h2>
-            <p>Cinma crud content</p>
+            <CinemaForm />
           </section>
         </header>
 

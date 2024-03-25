@@ -12,6 +12,7 @@ import RequireAuth from "./security/RequireAuth";
 import HomeAdmin from "./administrator/HomeAdmin";
 import CinemaAdmin from "./administrator/CinemaAdmin";
 import HallsAdmin from "./administrator/HallsAdmin";
+import HomeAarhus from "./kino/HomeAarhus";
 
 function App() {
   const auth = useAuth();
@@ -21,6 +22,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/HomeAarhus" element={<HomeAarhus />} />
         <Route path="/HomeAdmin" element={<HomeAdmin />} />
         <Route path="/CinemaAdmin" element={<CinemaAdmin />} />
         <Route path="/HallsAdmin" element={<HallsAdmin />} />
