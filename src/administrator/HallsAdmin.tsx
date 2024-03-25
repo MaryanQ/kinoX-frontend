@@ -4,7 +4,7 @@ import Footer from "../layout/Footer"; // Import the Footer component
 import { IconContext } from "react-icons";
 import "../styles/styles.css";
 
-const Home: React.FC = () => {
+const HallsAdmin: React.FC = () => {
   return (
     <>
       <div>
@@ -12,13 +12,9 @@ const Home: React.FC = () => {
           <IconContext.Provider value={{ color: "#fff" }}>
             <NavbarAdmin />
           </IconContext.Provider>
-          <section className="button-sec">
-            <a href="/CinemaAdmin" className="Cinemas-btn">
-              Cinemas
-            </a>
-            <a href="/HallsAdmin" className="Halls-btn">
-              Halls
-            </a>
+          <section className="Halls-crud">
+            <h2>Halls crud</h2>
+            <p>Halls crud content</p>
           </section>
         </header>
 
@@ -28,4 +24,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HallsAdmin;
