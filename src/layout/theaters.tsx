@@ -46,6 +46,12 @@ const Theaters = () => {
           <option value="ANM Cinemaxx Deluxe Aarhus">
             ANM Cinemaxx Deluxe Aarhus
           </option>
+          {/* Add cinema form as an option */}
+          <option disabled>--- Tilføj Biograf ---</option>
+          <option value="cinema-form">
+            Biografens navn:{" "}
+            <input type="text" placeholder="Indtast biografens navn" />
+          </option>
         </optgroup>
       </select>
     </div>

@@ -7,7 +7,6 @@ import {
 } from "../services/apiFacade";
 import { useLocation } from "react-router-dom";
 
-// Define a default cinema object
 const EMPTY_CINEMA: Cinema = {
   id: 0,
   name: "",
@@ -53,7 +52,7 @@ export default function CinemaForm() {
       if (formData.id) {
         await deleteCinema(formData.id);
         setFormData(EMPTY_CINEMA);
-        fetchCinemas(); // Refresh cinemas after deletion
+        fetchCinemas();
       }
     } catch (error) {
       console.error("Error deleting cinema:", error);

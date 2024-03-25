@@ -36,7 +36,7 @@ export const Halls = () => {
         {halls.map((hall) => (
           <li key={hall.id}>
             <Link to={`/hall/${hall.id}`}>
-              {`${hall.name} - Number of Seats: ${hall.capacity}`}
+              {`${hall.id} - Number of Seats: ${hall.capacity}`}
             </Link>
           </li>
         ))}
