@@ -1,26 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-//import { useAuth } from "./security/AuthProvider";
+import { useAuth } from "./security/AuthProvider";
 import Login from "./security/Login";
 import Logout from "./security/Logout";
 import AboutUs from "./kino/aboutUs";
-
 import Home from "./kino/Home";
 import { Halls } from "./kino/halls";
-//import { Cinemas } from "./kino/cinema";
 import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
-
+import RequireAuth from "./security/RequireAuth";
 import BookingForm from "./Form/BookingForm";
+import MovieForm from "./Form/MovieForm";
 
 function App() {
-  //const auth = useAuth();
+  const auth = useAuth();
 
-  // Define handleClose function to handle closing the modal or form
-  const handleClose = () => {
-    // Implement logic to close the modal or form
-    console.log("Modal closed");
-  };
+  auth.isLoggedIn;
+  auth.isLoggedInAs;
 
   return (
     <>
@@ -28,10 +24,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="booking" element={<Booking />} />
-        {/* Pass handleClose function as onClose prop to BookingForm */}
         <Route
-          path="/booking/:movieId"
-          element={<BookingForm onClose={handleClose} />}
+          path="/add"
+          element={
+            <RequireAuth>
+              <MovieForm />
+            </RequireAuth>
+          }
         />
 
         <Route path="/halls" element={<Halls />} />

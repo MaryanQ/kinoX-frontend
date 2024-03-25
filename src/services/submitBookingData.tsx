@@ -13,9 +13,6 @@ export const submitBookingData = async (formData: Booking): Promise<void> => {
     if (!response.ok) {
       throw new Error("Failed to submit booking data");
     }
-
-    // Handle success response if needed
-    // For example, you can return response.json() if the backend sends data back
   } catch (error) {
     console.error("Error submitting booking data:", error);
     throw error;

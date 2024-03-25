@@ -20,6 +20,7 @@ interface Movie {
 }
 
 interface Hall {
+  movie: any;
   id: number;
   name: string;
   capacity: number;

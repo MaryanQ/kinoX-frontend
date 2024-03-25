@@ -12,7 +12,7 @@ const Login = () => {
   const location = useLocation();
   const auth = useAuth();
 
-  const [err, setErr] = useState(null);
+  const [, setErr] = useState(null);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -25,17 +25,18 @@ const Login = () => {
       password: string;
     };
 
-    setErr(null);
-    console.log(err);
-    alert("Login: " + JSON.stringify(formDataObject));
+    setErr(null); // Clear any previous errors
+    // console.log(err); // Remove this line, as it logs the previous state
+    // alert("Login: " + JSON.stringify(formDataObject)); // Remove this line, not necessary for production
 
     auth
       .signIn(formDataObject)
       .then(() => {
-        navigate(from, { replace: true });
+        navigate(from, { replace: true }); // Redirect after successful login
       })
       .catch((err) => {
-        setErr(err);
+        setErr(err); // Set the error state for displaying to the user
+        console.error(err); // Log the error
       });
   }
 
