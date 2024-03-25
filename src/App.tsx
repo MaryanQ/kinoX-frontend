@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-
 import Login from "./security/Login";
 import Logout from "./security/Logout";
 import AboutUs from "./kino/aboutUs";
