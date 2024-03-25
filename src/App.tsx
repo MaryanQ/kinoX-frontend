@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useAuth } from "./security/AuthProvider";
+
 import Login from "./security/Login";
 import Logout from "./security/Logout";
 import AboutUs from "./kino/aboutUs";
@@ -8,30 +8,14 @@ import { Halls } from "./kino/halls";
 import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
-import RequireAuth from "./security/RequireAuth";
-import BookingForm from "./Form/BookingForm";
-import MovieForm from "./Form/MovieForm";
 
 function App() {
-  const auth = useAuth();
-
-  auth.isLoggedIn;
-  auth.isLoggedInAs;
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="booking" element={<Booking />} />
-        <Route
-          path="/add"
-          element={
-            <RequireAuth>
-              <MovieForm />
-            </RequireAuth>
-          }
-        />
 
         <Route path="/halls" element={<Halls />} />
 
