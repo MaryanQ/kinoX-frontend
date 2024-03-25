@@ -3,7 +3,7 @@ import { makeOptions, handleHttpErrors } from "./fetchUtilis";
 
 const Movies_URL = API_URL + "/movies";
 const Hall_URL = `${API_URL}/halls`;
-const Cinema_URL = `${API_URL}/cinema`;
+const Cinema_URL = `${API_URL}/cinemas`;
 const MovieScreening_URL = `${API_URL}/movie_screenings`;
 const Bookings_URL = `${API_URL}/bookings`;
 const Seats_URL = `${API_URL}/seats`;
@@ -39,8 +39,8 @@ interface Cinema {
   id: number;
   name: string;
   address: string;
-  contact_Information: string;
-  number_Of_Halls: number;
+  contact_information: string;
+  number_of_halls: number;
 }
 
 interface MovieScreening {
@@ -295,18 +295,18 @@ export async function getCinemas(): Promise<Cinema[]> {
   return fetch(Cinema_URL).then(handleHttpErrors);
 }
 
-async function getCinema(id: number): Promise<Cinema> {
+export async function getCinema(id: number): Promise<Cinema> {
   return fetch(`${Cinema_URL}/${id}`).then(handleHttpErrors);
 }
 
-async function addCinema(newCinema: Cinema): Promise<Cinema> {
+export async function addCinema(newCinema: Cinema): Promise<Cinema> {
   const method = newCinema.id ? "PUT" : "POST";
   const options = makeOptions(method, newCinema);
   const URL = newCinema.id ? `${Cinema_URL}/${newCinema.id}` : Cinema_URL;
   return fetch(URL, options).then(handleHttpErrors);
 }
 
-async function deleteCinema(id: number): Promise<void> {
+export async function deleteCinema(id: number): Promise<void> {
   const options = makeOptions("DELETE", null);
   return fetch(`${Cinema_URL}/${id}`, options).then(handleHttpErrors);
 }
