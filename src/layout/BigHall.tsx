@@ -6,28 +6,22 @@ const Hall1 = () => {
   const numRows = 25;
   const numSeatsPerRow = 16;
 
-  // Initialize state to track selected seats
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
 
-  // Function to handle seat click event
   const handleSeatClick = (selectedSeat: Seat) => {
-    // Check if the selected seat is already in the selectedSeats array
     const index = selectedSeats.findIndex(
       (seat) => seat.id === selectedSeat.id
     );
 
     if (index === -1) {
-      // If the seat is not already selected, add it to the selectedSeats array
       setSelectedSeats([...selectedSeats, selectedSeat]);
     } else {
-      // If the seat is already selected, remove it from the selectedSeats array
       setSelectedSeats(
         selectedSeats.filter((seat) => seat.id !== selectedSeat.id)
       );
     }
   };
 
-  // Function to calculate total payment based on selected seats
   const calculateTotalPayment = (): number => {
     return selectedSeats.reduce((total, seat) => total + seat.price, 0);
   };
@@ -91,17 +85,17 @@ const Hall1 = () => {
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Cowboy",
                     price: 120,
-                    capacity: 1, // Example value for capacity
+                    capacity: 1,
                     movieScreening: {
-                      id: 1, // Replace with actual ID
-                      movieTitle: "Movie Title", // Replace with actual movie title
+                      id: 1,
+                      movieTitle: "Movie Title",
                       startTime: new Date("2024-03-25T18:00:00"),
-                      endTime: new Date("2024-03-25T20:00:00"), // Replace with actual end time
-                      ticketPrice: 10, // Replace with actual ticket price
-                      availableSeats: 100, // Replace with actual number of available seats
-                      bookedSeats: 0, // Empty array for booked seats
-                      language: "English", // Replace with actual language
-                      seats: [], // Empty array for seats
+                      endTime: new Date("2024-03-25T20:00:00"),
+                      ticketPrice: 10,
+                      availableSeats: 100,
+                      bookedSeats: 0,
+                      language: "English",
+                      seats: [],
                     },
                   })
                 }
@@ -122,17 +116,17 @@ const Hall1 = () => {
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Regular",
                     price: 160,
-                    capacity: 1, // Example value for capacity
+                    capacity: 1,
                     movieScreening: {
-                      id: 1, // Replace with actual ID
-                      movieTitle: "Movie Title", // Replace with actual movie title
+                      id: 1,
+                      movieTitle: "Movie Title",
                       startTime: new Date("2024-03-25T18:00:00"),
-                      endTime: new Date("2024-03-25T20:00:00"), // Replace with actual end time
-                      ticketPrice: 10, // Replace with actual ticket price
-                      availableSeats: 100, // Replace with actual number of available seats
-                      bookedSeats: 0, // Empty array for booked seats
-                      language: "English", // Replace with actual language
-                      seats: [], // Empty array for seats
+                      endTime: new Date("2024-03-25T20:00:00"),
+                      ticketPrice: 10,
+                      availableSeats: 100,
+                      bookedSeats: 0,
+                      language: "English",
+                      seats: [],
                     },
                   })
                 }
@@ -153,17 +147,17 @@ const Hall1 = () => {
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Sofa",
                     price: 200,
-                    capacity: 1, // Example value for capacity
+                    capacity: 1,
                     movieScreening: {
-                      id: 1, // Replace with actual ID
-                      movieTitle: "Movie Title", // Replace with actual movie title
+                      id: 1,
+                      movieTitle: "Movie Title",
                       startTime: new Date("2024-03-25T18:00:00"),
-                      endTime: new Date("2024-03-25T20:00:00"), // Replace with actual end time
-                      ticketPrice: 10, // Replace with actual ticket price
-                      availableSeats: 100, // Replace with actual number of available seats
-                      bookedSeats: 0, // Empty array for booked seats
-                      language: "English", // Replace with actual language
-                      seats: [], // Empty array for seats
+                      endTime: new Date("2024-03-25T20:00:00"),
+                      ticketPrice: 10,
+                      availableSeats: 100,
+                      bookedSeats: 0,
+                      language: "English",
+                      seats: [],
                     },
                   })
                 }
