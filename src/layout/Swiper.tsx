@@ -40,7 +40,7 @@ const MySwiper: React.FC = () => {
               style={{ width: "70vw", height: "90vh" }} // Set width to 100% and height to auto
             />
             <div className="text-box">
-              <Link to="#" className="btn">
+              <Link to="/halls" className="btn">
                 Køb billet{" "}
               </Link>
             </div>
@@ -52,7 +52,7 @@ const MySwiper: React.FC = () => {
               style={{ width: "70vw", height: "90vh" }} // Set width to 100% and height to auto
             />{" "}
             <div className="text-box">
-              <Link to="#" className="btn">
+              <Link to="/halls" className="btn">
                 Køb billet{" "}
               </Link>
             </div>
@@ -64,7 +64,7 @@ const MySwiper: React.FC = () => {
               style={{ width: "70vw", height: "90vh" }} // Set width to 100% and height to auto
             />{" "}
             <div className="text-box">
-              <Link to="#" className="btn">
+              <Link to="/halls" className="btn">
                 Køb billet
               </Link>
             </div>

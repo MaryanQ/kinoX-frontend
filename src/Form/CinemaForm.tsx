@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import {
   getCinemas,
   addCinema,
   deleteCinema,
   Cinema,
 } from "../services/apiFacade";
-import { useLocation } from "react-router-dom";
 
 const EMPTY_CINEMA: Cinema = {
   id: 0,
@@ -15,19 +15,13 @@ const EMPTY_CINEMA: Cinema = {
   number_of_halls: 0,
 };
 
-export default function CinemaForm() {
+const CinemaForm = () => {
   const [formData, setFormData] = useState<Cinema>(EMPTY_CINEMA);
-  const cinemaToEdit = useLocation().state || null;
+  const [redirectToHome, setRedirectToHome] = useState(false);
 
   useEffect(() => {
     fetchCinemas();
   }, []);
-
-  useEffect(() => {
-    if (cinemaToEdit) {
-      setFormData(cinemaToEdit);
-    }
-  }, [cinemaToEdit]);
 
   const fetchCinemas = async () => {
     try {
@@ -68,14 +62,19 @@ export default function CinemaForm() {
         console.log("New cinema added:", newCinema);
       }
       fetchCinemas();
+      setRedirectToHome(true);
     } catch (error) {
       console.error("Error adding/updating cinema:", error);
     }
   };
 
+  if (redirectToHome) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
-      <h2>Cinema Add/Edit/Delete</h2>
+      <h2>Cinema</h2>
       <form id="cinemaForm" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -89,34 +88,12 @@ export default function CinemaForm() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="address">Address:</label>
+          <label htmlFor="address">By:</label>
           <input
             type="text"
             id="address"
             name="address"
             value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="contact_information">Contact Information:</label>
-          <input
-            type="text"
-            id="contact_information"
-            name="contact_information"
-            value={formData.contact_information}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="number_of_halls">Number of Halls:</label>
-          <input
-            type="number"
-            id="number_of_halls"
-            name="number_of_halls"
-            value={formData.number_of_halls}
             onChange={handleChange}
             required
           />
@@ -128,7 +105,8 @@ export default function CinemaForm() {
           </button>
         )}
       </form>
-      <p>{JSON.stringify(formData)}</p>
     </>
   );
-}
+};
+
+export default CinemaForm;

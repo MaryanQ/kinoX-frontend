@@ -10,7 +10,9 @@ import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
 import RequireAuth from "./security/RequireAuth";
 import HomeAdmin from "./administrator/HomeAdmin";
-import ContactUs from "./kino/ContactUs";
+import CinemaAdmin from "./administrator/CinemaAdmin";
+import HallsAdmin from "./administrator/HallsAdmin";
+import HomeAarhus from "./kino/HomeAarhus";
 
 function App() {
   const auth = useAuth();
@@ -20,6 +22,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/HomeAarhus" element={<HomeAarhus />} />
+        <Route path="/HomeAdmin" element={<HomeAdmin />} />
+        <Route path="/CinemaAdmin" element={<CinemaAdmin />} />
+        <Route path="/HallsAdmin" element={<HallsAdmin />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="booking" element={<Booking />} />
         <Route path="/halls" element={<Halls />} />
@@ -31,7 +37,7 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/programs/contactUs" element={<ContactUs />} />
+
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login />} />

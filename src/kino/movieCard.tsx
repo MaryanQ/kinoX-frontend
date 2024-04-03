@@ -32,17 +32,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
             <h3>{title}</h3>
             <span>{plot}</span> <br />
             <Link to="/halls">
-              {" "}
-              {/* Assuming the route is correct */}
-              <button className="primary-btn">
+              <button className="btn">
                 <i className="fa fa-ticket"></i> BOOK NU
               </button>
             </Link>
-          </div>
-          <div className="details">
-            <p>Title: {title}</p>
-            <p>poster: {poster_url} </p>
-            <p>Plot:{plot} </p>
           </div>
         </div>
       </div>
