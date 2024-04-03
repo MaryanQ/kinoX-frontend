@@ -84,7 +84,7 @@ const Hall1 = () => {
                   handleSeatClick({
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Cowboy",
-                    price: 120,
+                    price: 20,
                     capacity: 1,
                     movieScreening: {
                       id: 1,
@@ -115,7 +115,7 @@ const Hall1 = () => {
                   handleSeatClick({
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Regular",
-                    price: 160,
+                    price: 16,
                     capacity: 1,
                     movieScreening: {
                       id: 1,
@@ -146,7 +146,7 @@ const Hall1 = () => {
                   handleSeatClick({
                     id: rowIndex * numSeatsPerRow + seatIndex,
                     type: "Sofa",
-                    price: 200,
+                    price: 25,
                     capacity: 1,
                     movieScreening: {
                       id: 1,
