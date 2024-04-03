@@ -4,7 +4,7 @@ import Login from "./security/Login";
 import Logout from "./security/Logout";
 import AboutUs from "./kino/ContactUs";
 import Home from "./kino/Home";
-import BigHall from "./layout/BigHall";
+import Halls from "./kino/halls";
 import { Movies } from "./kino/Movies";
 import MovieDetails from "./kino/MovieDetails";
 import Booking from "./kino/Booking";
@@ -28,7 +28,7 @@ function App() {
         <Route path="/HallsAdmin" element={<HallsAdmin />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="booking" element={<Booking />} />
-        <Route path="/bigHall" element={<BigHall />} />
+        <Route path="/halls" element={<Halls />} />
         <Route
           path="/add"
           element={
