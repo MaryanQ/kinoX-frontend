@@ -20,12 +20,10 @@ export default function CinemaForm() {
   const cinemaToEdit = useLocation().state || null;
 
   useEffect(() => {
-    // Fetch cinemas when the component mounts
     fetchCinemas();
   }, []);
 
   useEffect(() => {
-    // If a cinema is passed to edit, set the form data accordingly
     if (cinemaToEdit) {
       setFormData(cinemaToEdit);
     }
@@ -33,7 +31,7 @@ export default function CinemaForm() {
 
   const fetchCinemas = async () => {
     try {
-      await getCinemas(); // We only need to fetch cinemas to update the state, so we don't store the result in a variable
+      await getCinemas();
     } catch (error) {
       console.error("Error fetching cinemas:", error);
     }
@@ -63,15 +61,13 @@ export default function CinemaForm() {
     e.preventDefault();
     try {
       if (formData.id) {
-        // If there's an ID, it's an existing cinema, so update it
         await addCinema(formData);
       } else {
-        // Otherwise, it's a new cinema, so add it
         const newCinema = await addCinema(formData);
         setFormData(EMPTY_CINEMA);
         console.log("New cinema added:", newCinema);
       }
-      fetchCinemas(); // Refresh cinemas after adding/updating
+      fetchCinemas();
     } catch (error) {
       console.error("Error adding/updating cinema:", error);
     }
