@@ -8,7 +8,7 @@ import "./login.css";
 const Login = () => {
   const [user, setUser] = useState<User>({ username: "", password: "" });
 
-  const navigate = useNavigate(); // Hook for navigating programmatically
+  const navigate = useNavigate();
   const auth = useAuth();
 
   const [, setErr] = useState(null);

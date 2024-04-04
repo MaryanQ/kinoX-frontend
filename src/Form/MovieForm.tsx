@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { addMovie, deleteMovie, Movie } from "../services/apiFacade";
 import { getHalls, Hall } from "../services/apiFacade";
 import { useLocation } from "react-router-dom";
-import "../styles/MovieForm.css";
+import "./MovieForm.css";
 const EMPTY_MOVIE = {
   id: 0,
   title: "",
@@ -15,12 +15,12 @@ const EMPTY_MOVIE = {
 };
 
 const MovieForm = () => {
-  const [halls, setHalls] = useState<Hall[]>([]); // State for halls
+  const [halls, setHalls] = useState<Hall[]>([]);
   const movieToEdit: Movie | null = useLocation().state || null;
   const [formData, setFormData] = useState<Movie>(movieToEdit || EMPTY_MOVIE);
 
   useEffect(() => {
-    getHalls().then((res: Hall[]) => setHalls(res)); // Fetch halls
+    getHalls().then((res: Hall[]) => setHalls(res));
   }, []);
 
   const handleChange = (
