@@ -25,9 +25,7 @@ const Login = () => {
       password: string;
     };
 
-    setErr(null); // Clear any previous errors
-    // console.log(err); // Remove this line, as it logs the previous state
-    // alert("Login: " + JSON.stringify(formDataObject)); // Remove this line, not necessary for production
+    setErr(null);
 
     auth
       .signIn(formDataObject)

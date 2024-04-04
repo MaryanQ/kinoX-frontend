@@ -99,14 +99,14 @@ export async function getMovie(id: number): Promise<Movie> {
   }
 }
 
-async function addMovie(newMovie: Movie): Promise<Movie> {
+export async function addMovie(newMovie: Movie): Promise<Movie> {
   const method = newMovie.id ? "PUT" : "POST";
   const options = makeOptions(method, newMovie);
   const URL = newMovie.id ? `${Movies_URL}/${newMovie.id}` : Movies_URL;
   return fetch(URL, options).then(handleHttpErrors);
 }
 
-async function deleteMovie(id: string): Promise<void> {
+export async function deleteMovie(id: string): Promise<void> {
   const options = makeOptions("DELETE", null);
   return fetch(`${Movies_URL}/${id}`, options).then(handleHttpErrors);
 }

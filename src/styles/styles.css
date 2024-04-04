@@ -206,7 +206,7 @@ select:hover {
   font-weight: bold;
   font-style: italic;
   padding: 5px;
-  /* Prevent hover effect */
+
   pointer-events: none;
 }
 

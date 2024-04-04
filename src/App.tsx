@@ -13,6 +13,7 @@ import HomeAdmin from "./administrator/HomeAdmin";
 import CinemaAdmin from "./administrator/CinemaAdmin";
 import HallsAdmin from "./administrator/HallsAdmin";
 import HomeAarhus from "./kino/HomeAarhus";
+import MovieForm from "./Form/MovieForm";
 
 function App() {
   const auth = useAuth();
@@ -37,7 +38,7 @@ function App() {
             </RequireAuth>
           }
         />
-
+        <Route path="/movie-form" element={<MovieForm />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
         <Route path="/login" element={<Login />} />

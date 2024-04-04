@@ -73,41 +73,31 @@ const Hall1 = () => {
         {/* Cowboy Rows */}
         {[...Array(2)].map((_, rowIndex) => (
           <div className="row cowboy-row" key={`cowboy-row-${rowIndex}`}>
-            {[...Array(numSeatsPerRow)].map((_, seatIndex) => {
-              const seatId = rowIndex * numSeatsPerRow + seatIndex;
-              const isSelected = selectedSeats.some(
-                (seat) => seat.id === seatId
-              );
-              const seatClass = isSelected
-                ? "seat cowboy-color-selected"
-                : "seat cowboy-color";
-
-              return (
-                <div
-                  className={seatClass}
-                  key={`cowboy-seat-${rowIndex}-${seatIndex}`}
-                  onClick={() =>
-                    handleSeatClick({
-                      id: seatId,
-                      type: "Cowboy",
-                      price: 120,
-                      capacity: 1,
-                      movieScreening: {
-                        id: 1,
-                        movieTitle: "Movie Title",
-                        startTime: new Date("2024-03-25T18:00:00"),
-                        endTime: new Date("2024-03-25T20:00:00"),
-                        ticketPrice: 10,
-                        availableSeats: 100,
-                        bookedSeats: 0,
-                        language: "English",
-                        seats: [],
-                      },
-                    })
-                  }
-                ></div>
-              );
-            })}
+            {[...Array(numSeatsPerRow)].map((_, seatIndex) => (
+              <div
+                className="seat cowboy-color"
+                key={`cowboy-seat-${rowIndex}-${seatIndex}`}
+                onClick={() =>
+                  handleSeatClick({
+                    id: rowIndex * numSeatsPerRow + seatIndex,
+                    type: "Cowboy",
+                    price: 20,
+                    capacity: 1,
+                    movieScreening: {
+                      id: 1,
+                      movieTitle: "Movie Title",
+                      startTime: new Date("2024-03-25T18:00:00"),
+                      endTime: new Date("2024-03-25T20:00:00"),
+                      ticketPrice: 10,
+                      availableSeats: 100,
+                      bookedSeats: 0,
+                      language: "English",
+                      seats: [],
+                    },
+                  })
+                }
+              ></div>
+            ))}
           </div>
         ))}
 
