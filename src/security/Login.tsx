@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+
 import { useAuth } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { User } from "../services/authFacade";
@@ -8,13 +8,10 @@ import "./login.css";
 const Login = () => {
   const [user, setUser] = useState<User>({ username: "", password: "" });
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate(); // Hook for navigating programmatically
   const auth = useAuth();
 
   const [, setErr] = useState(null);
-
-  const from = location.state?.from?.pathname || "/";
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,11 +27,11 @@ const Login = () => {
     auth
       .signIn(formDataObject)
       .then(() => {
-        navigate(from, { replace: true }); // Redirect after successful login
+        navigate("/movie-form");
       })
       .catch((err) => {
-        setErr(err); // Set the error state for displaying to the user
-        console.error(err); // Log the error
+        setErr(err);
+        console.error(err);
       });
   }
 
@@ -46,7 +43,7 @@ const Login = () => {
           <label htmlFor="username">Username</label>
           <input
             type="text"
-            id="username" // Add id attribute
+            id="username"
             name="username"
             value={user.username}
             onChange={(e) =>
